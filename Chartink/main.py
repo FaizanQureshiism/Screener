@@ -1,0 +1,42 @@
+import requests
+
+# URL to send the POST request
+url = "https://chartink.com/screener/process"
+
+# Headers for the request
+headers = {
+    "accept": "application/json, text/javascript, */*; q=0.01",
+    "accept-language": "en-US,en;q=0.9",
+    "cache-control": "no-cache",
+    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+    "pragma": "no-cache",
+    "priority": "u=1, i",
+    "sec-ch-ua": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "x-csrf-token": "3mcfJJJynruKjlsh2Ip7a8bxpvbk1fpOMXHQ5LXy",  # CSRF token
+    "x-requested-with": "XMLHttpRequest",
+    "cookie": "_ga=GA1.2.301791879.1726215388; __gads=ID=01d84225b269872c:T=1726215390:RT=1727939205:S=ALNI_MaBgaL3jfC-3mEaBCEnkZb5w00pKQ; __eoi=ID=ec5994392e42d723:T=1726215390:RT=1727939206:S=AA-AfjbN2dDaqaxuId9sOUlekCQ2; _gid=GA1.2.725953381.1728100801; FCNEC=%5B%5B%22AKsRol9hwozDl6_xdockjNSP0_IV0oLdOaCJcCfWdWmit4blC2kIC_l0C7nXX5ygHdBCSquG5pyP-Q7d11prm3TOCar7axHeEM5oTfZ4_fZsqM0UdVKm3GHuXOP4TMJz5DFJ0r91x9pXmujK9CDsdOTpRVJBfgRgmQ%3D%3D%22%5D%5D; remember_web_59ba36addc2b2f9401580f014c7f58ea4e30989d=eyJpdiI6IlFQdGxSQWFxWG9nT0cyajlDWnRwdlE9PSIsInZhbHVlIjoiM21yM1RaWUVVTUUwZUZBSkYrT2pCTFh2Y0hvWlpPUExscWowWXVDTlEzM2d6L1N2YW9tUlA4NWpaM1lFRi9lRXlESXpJYTc2ayt4S0FoMXlVRVdMV1lDa0ZiZzZKTDNUZUV0c2pXV0Y1ZUNOTmQzWnBMYkpEd0k4QjdUU2pNRkQ4ZFlSVklHdVR1bUs0UmdKR2ptUFdySGxoNEwzdENKQlFKZzRIWUxPNW1TNi9HdWorMlR5Z25tUDUyb0VuRFdzd3JCYTFMVS9CaEZjcUFRU29Tbm5VbnhmWVZkOStNVFMxMGc2WHRFWTNqUT0iLCJtYWMiOiIzMWIzOTk0ZWFhMTM5OGYyM2ZlNmU5MDNlZjk2Nzc4OWM2YmRjOGQ3MDI2NWVjYTkxNmFkYjNlZDNjN2M5NDY0IiwidGFnIjoiIn0%3D; __utma=102564947.301791879.1726215388.1728103764.1728103764.1; __utmc=102564947; __utmz=102564947.1728103764.1.1.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided); _ga_7P3KPC3ZPP=GS1.2.1728111147.10.0.1728111147.0.0.0; XSRF-TOKEN=eyJpdiI6IjJScGQ2V3BZcVVhZ3BZQ2FCMFZSTnc9PSIsInZhbHVlIjoidWVCays0akV1VFoyM2U5RTFrVUJqMmZHaGZlTWE3OHZWUytBU240Ymt2RkV1OFZJdTFUejlFTHVWSUlLU3dYQ2JEaG8way8yRWkwR0NpSy9YdEFjTE5heXRScVpPRk40THY1cTJnNjJBOXNmaW0rZ3BuWTFXVSs5d01PR3hCaCsiLCJtYWMiOiJjYTMyMDY0MjE1MzljNDM0Y2M0M2YwNjU1YTBiOWY1N2E4MGNmNzEyMTNjMzY2NGNiZTc1NDhiMjU5ZGI4YzlhIiwidGFnIjoiIn0%3D; ci_session=eyJpdiI6ImtnK2dFUnV6S05LQ2F1b0xpbXhSZFE9PSIsInZhbHVlIjoicCtDcEdRZEYxQ1k0N1d5M2NoSkhuR0dhNHZoSkZsNHJpankzeEs4VUxWNnd0R1NwMHY4MlVJRTR0YURJa3g2aFdOYzFJOUtBWWhmWkdtVFY2NllwMW92cTE0T0FUVmF4MWpBQW5mcUE5R0RseTIxWWZXalV5Z1N4ZTVxNTYvWFoiLCJtYWMiOiJiZDE0ZTE1MDE4NmEwN2YzMjE5OGI2NzYyMmJmNjM4MDMyYjYyNTBiMjg5YTUyNGE4YzgxNTQzOTgxMzdiMTEzIiwidGFnIjoiIn0%3D",
+    "Referer": "https://chartink.com/screener/index-strength-weakness-measurement-dnm-og",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+}
+
+# The body for the POST request
+data = {
+    "scan_clause": "(+%7B33492%7D+(+%5B0%5D+1+minute+rsi(+3+)+%3E+%5B0%5D+1+minute+rsi(+6+)+and+%5B0%5D+1+minute+rsi(+6+)+%3E+%5B0%5D+1+minute+rsi(+9+)+and+%5B0%5D+1+minute+rsi(+9+)+%3E+%5B0%5D+1+minute+rsi(+13+)+and+%5B0%5D+1+minute+rsi(+13+)+%3E+%5B0%5D+1+minute+rsi(+20+)+and+%5B0%5D+1+minute+rsi(+20+)+%3E+%5B0%5D+1+minute+rsi(+50+)+)+)+",
+    "debug_clause": "groupcount(+1+where+%5B0%5D+1+minute+rsi(+3+)+%3E+%5B0%5D+1+minute+rsi(+6+))%2Cgroupcount(+1+where+%5B0%5D+1+minute+rsi(+6+)+%3E+%5B0%5D+1+minute+rsi(+9+))%2Cgroupcount(+1+where+%5B0%5D+1+minute+rsi(+9+)+%3E+%5B0%5D+1+minute+rsi(+13+))%2Cgroupcount(+1+where+%5B0%5D+1+minute+rsi(+13+)+%3E+%5B0%5D+1+minute+rsi(+20+))%2Cgroupcount(+1+where+%5B0%5D+1+minute+rsi(+20+)+%3E+%5B0%5D+1+minute+rsi(+50+))"
+}
+
+# Send the POST request
+response = requests.post(url, headers=headers, data=data)
+
+# Check if the request was successful
+if response.status_code == 200:
+    # Parse the response JSON and print the data
+    data = response.json()
+    print(data)
+else:
+    print(f"Request failed with status code {response.status_code}")
